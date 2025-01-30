@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Test</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <script type="module" src="./src/js/blindtest.js" defer></script>
+</head>
+<body>
+    <div class="container_blindtest">
+        <div class="score_board">
+            <div class="score_card">
+                <!-- <p>Score : <span class="score"></span></p> -->
+                <p><span class="tries"></span></p>               
+            </div>           
+        </div>
+        <div class="content">
+            <div class="blindtest_game">
+                <div class="img_container">
+                    <img src="" alt="">
+                </div>
+                <div class="audioPlayer">
+                    <audio id="audioPlayer" controls></audio>
+                </div>       
+                <div class="answer_container">
+                    <form name="blindtest" id="blindtest" action="" method="post">
+                        <input
+                            type="text"
+                            name="answer"
+                            id="answer"
+                            placeholder="Nom du personnage"
+                        />
+                        <button class="btn-answer" type="submit">Valider</button>
+                    </form>
+                </div>
+                <div class="next_btn">
+                    <button id ="nextBtn" class="nextBtn">Personnage suivant</button>
+                </div>
+            </div>
+            
+        </div>             
+       
+    </div>  
+</body>
+</html>

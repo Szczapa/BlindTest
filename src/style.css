@@ -1,0 +1,144 @@
+body {
+  overflow: hidden;
+  background-image: url("./image/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: white;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+
+.title{
+  font-weight: bold;
+}
+/* PAGE BLINDTEST */
+
+.container_blindtest{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+
+/* Tableau de score */
+
+.score_board{
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+  align-items: end;
+  margin-right: 40%;
+  position: relative;
+  height: 100px;
+}
+
+.score_card{
+  position: absolute;
+}
+
+/* Blind Test */
+
+
+.blindtest_game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 181px;
+  height: 329px;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.answer_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.feedback-error{
+  text-align: center;
+}
+
+.card {
+  position: relative;
+}
+
+.failed{
+  position: absolute;
+}
+
+
+.score_card{
+  border: solid #750662 1px;
+  border-radius: 10%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 0.25rem;
+  background-color: rgba(0, 0, 0,0.25);
+  text-align: center;
+  font-size: 4rem;
+}
+
+#nextBtn {
+  background-color: #117154;
+  border: 1px solid transparent;
+  border-radius: .75rem;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: .75rem 1.2rem;
+  text-align: center;
+  text-decoration: none #6B7280 solid;
+  text-decoration-thickness: auto;
+  transition-duration: .2s;
+  transition-property: background-color,border-color,color,fill,stroke;
+  transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+}
+
+#nextBtn:hover {
+  background-color: #374151;
+}
+
+#nextBtn:focus {
+  box-shadow: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+@media only screen and (max-width: 1024px)  {
+  .container_blindtest{
+    justify-content: center;
+  }
+}
