@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "cloak&dagger", "doctorstrange", "groot", "hawkeye", "hela", "hulk",
         "invisiblewoman", "ironfist", "ironman", "jeffthelandshark", "loki", "lunasnow",
         "magik", "magneto", "mantis", "misterfantastic", "moonknight",
-        "namor", "peniparker", "psylocke", "rocketracoon", "scarletwitch",
+        "namor", "peniparker", "psylocke", "rocketraccoon", "scarletwitch",
         "spider-man", "squirrelgirl", "star-lord", "storm", "thepunisher",
         "thor", "venom", "wintersoldier", "wolverine"
     ];
