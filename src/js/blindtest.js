@@ -73,13 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
             newCharacter = characterList[randomIndex];
         } while (playedCharacterList.indexOf(newCharacter) !== -1);
         currentCharacter = newCharacter;
+        playedCharacterList.push(currentCharacter);
         let newStep = actualScore >= 15 ? 2 : actualScore >= 10 ? 1 : 0;
         if (newStep !== actualStep) {
             actualStep = newStep;
             playedCharacterList = [];
         }
         let soundCharacter = currentCharacter + (actualStep === 2 ? "2" : actualStep === 1 ? "1" : "");
-        playedCharacterList.push(currentCharacter);
         if (soundCharacter != "") {
             audioPlayer.src = `./src/audio/${soundCharacter}.mp3`;
         }
