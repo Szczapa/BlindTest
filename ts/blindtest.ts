@@ -86,6 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
             randomIndex = Math.floor(Math.random() * characterList.length);
             newCharacter = characterList[randomIndex];
         } while (playedCharacterList.indexOf(newCharacter) !== -1);
+
+        console.log(score);
+        
+        console.log(playedCharacterList);
+        console.log(newCharacter);    
+        
+        
+        
     
         currentCharacter = newCharacter;
         playedCharacterList.push(currentCharacter);
