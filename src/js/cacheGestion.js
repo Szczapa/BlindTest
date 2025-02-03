@@ -17,18 +17,27 @@ export function checkStorage() {
     const gameScore = parseInt(localStorage.getItem("gameScore") || "0", 10);
     return donation > 0 || gameScore > 0;
 }
-export function addListCharacter() {
+export function saveCharacterList(characterList) {
+    localStorage.setItem("characterList", JSON.stringify(characterList));
 }
-export function resetListCharacter() {
+export function resetCharacterList() {
+    localStorage.removeItem("characterList");
 }
 export function getCharacterList() {
-    return [];
+    const storedList = localStorage.getItem("characterList");
+    return storedList ? JSON.parse(storedList) : [];
+}
+export function setLevel(level) {
+    localStorage.setItem('level', level.toString());
+}
+export function getLevel() {
+    const storedLevel = localStorage.getItem("level");
+    return storedLevel ? parseInt(storedLevel, 10) : 0;
 }
 export function initStorage() {
     localStorage.clear();
     localStorage.setItem("donation", "0");
-    console.log(localStorage.setItem("donation", "0"));
     localStorage.setItem("gameScore", "0");
-    console.log(localStorage.setItem("gameScore", "0"));
     localStorage.setItem("characterList", "");
+    localStorage.setItem("level", "0");
 }
