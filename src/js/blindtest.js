@@ -1,4 +1,4 @@
-import { saveScore, getScore, saveMoney, getMoney } from "./cacheGestion.js";
+import { saveScore, getScore, saveMoney, getMoney, getCharacterList, saveCharacterList, setLevel, getLevel } from "./cacheGestion.js";
 document.addEventListener("DOMContentLoaded", () => {
     const imgContainer = document.querySelector(".img_container");
     const form = document.querySelector("#blindtest");
@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "spider-man", "squirrelgirl", "star-lord", "storm", "thepunisher",
         "thor", "venom", "wintersoldier", "wolverine"
     ];
-    let playedCharacterList = [];
+    let playedCharacterList = getCharacterList();
     let score = getScore();
     let money = getMoney();
     let tryAnswer = 2;
-    let actualStep = 0;
+    let actualStep = getLevel();
     let currentCharacter = null;
     nextBtn === null || nextBtn === void 0 ? void 0 : nextBtn.classList.add("hidden");
     updateUI();
@@ -40,11 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
             score++;
             saveScore(score);
             toggleNextButton(true);
+            saveList();
         }
         else {
             tryAnswer--;
             if (tryAnswer <= 0) {
-                money++;
+                money += .5;
                 saveMoney(money);
                 displayImage(currentCharacter);
                 addBefore();
@@ -54,40 +55,55 @@ document.addEventListener("DOMContentLoaded", () => {
                 money += .5;
                 displayImage("fail");
                 showMessage(`Mauvaise réponse. ${tryAnswer} essai(s) restant.`, "feedback-error");
+                saveList();
             }
         }
         updateUI();
         clearInput();
     }
     function pickRandomCharacter() {
-        tryAnswer = 2;
-        resetContainer();
-        let actualScore = getScore();
-        let randomIndex;
-        let newCharacter;
-        if (playedCharacterList.length >= characterList.length) {
-            console.log("fin du jeu");
-        }
-        do {
-            randomIndex = Math.floor(Math.random() * characterList.length);
-            newCharacter = characterList[randomIndex];
-        } while (playedCharacterList.indexOf(newCharacter) !== -1);
-        console.log(score);
-        console.log(playedCharacterList);
-        console.log(newCharacter);
-        currentCharacter = newCharacter;
-        playedCharacterList.push(currentCharacter);
-        let newStep = actualScore >= 15 ? 2 : actualScore >= 10 ? 1 : 0;
-        if (newStep !== actualStep) {
-            actualStep = newStep;
-            playedCharacterList = [];
-        }
-        let soundCharacter = currentCharacter + (actualStep === 2 ? "2" : actualStep === 1 ? "1" : "");
-        if (soundCharacter != "") {
-            audioPlayer.src = `./src/audio/${soundCharacter}.mp3`;
+        if (getScore() < 50) {
+            tryAnswer = 2;
+            resetContainer();
+            let actualScore = getScore();
+            let randomIndex;
+            let newCharacter;
+            if (playedCharacterList.length >= characterList.length) {
+                showMessage(`Rêves gagne ${getMoney()} € grace à ta nulité`, "feedback-error");
+                form.classList.add("hidden");
+                return;
+            }
+            do {
+                randomIndex = Math.floor(Math.random() * characterList.length);
+                newCharacter = characterList[randomIndex];
+            } while (playedCharacterList.indexOf(newCharacter) !== -1);
+            currentCharacter = newCharacter;
+            let newStep = actualScore >= 30 ? 2 : actualScore >= 10 ? 1 : 0;
+            if (newStep !== actualStep) {
+                actualStep = newStep;
+                setLevel(newStep);
+                actualStep = getLevel();
+                playedCharacterList = [];
+                saveCharacterList(playedCharacterList);
+            }
+            let soundCharacter = currentCharacter + (actualStep === 2 ? "2" : actualStep === 1 ? "1" : "");
+            if (soundCharacter != "") {
+                audioPlayer.src = `./src/audio/${soundCharacter}.mp3`;
+            }
+            else {
+                console.error(`Fichier audio introuvable pour ${soundCharacter}`);
+            }
         }
         else {
-            console.error(`Fichier audio introuvable pour ${soundCharacter}`);
+            showMessage(`Rêves gagne ${getMoney()} € grace à ta nulité`, "feedback-success");
+            form.classList.add("hidden");
+            nextBtn.classList.remove("hidden");
+        }
+    }
+    function saveList() {
+        if (playedCharacterList.indexOf(currentCharacter) === -1) {
+            playedCharacterList.push(currentCharacter);
+            saveCharacterList(playedCharacterList);
         }
     }
     function nextCharacter() {
