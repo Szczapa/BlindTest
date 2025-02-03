@@ -23,8 +23,19 @@ export function saveScore(score: number): void {
   export function checkStorage(): boolean {
     const donation = parseInt(localStorage.getItem("donation") || "0", 10);
     const gameScore = parseInt(localStorage.getItem("gameScore") || "0", 10);
-
     return donation > 0 || gameScore > 0; 
+}
+
+export function addListCharacter (): void{
+
+}
+
+export function resetListCharacter (): void {
+
+}
+
+export function getCharacterList(): String[]{
+  return [];
 }
 
 
@@ -35,6 +46,7 @@ export function saveScore(score: number): void {
 
     localStorage.setItem("gameScore","0");
     console.log(localStorage.setItem("gameScore","0"));    
+    localStorage.setItem("characterList","");
   }
 
   

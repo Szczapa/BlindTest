@@ -17,10 +17,18 @@ export function checkStorage() {
     const gameScore = parseInt(localStorage.getItem("gameScore") || "0", 10);
     return donation > 0 || gameScore > 0;
 }
+export function addListCharacter() {
+}
+export function resetListCharacter() {
+}
+export function getCharacterList() {
+    return [];
+}
 export function initStorage() {
     localStorage.clear();
     localStorage.setItem("donation", "0");
     console.log(localStorage.setItem("donation", "0"));
     localStorage.setItem("gameScore", "0");
     console.log(localStorage.setItem("gameScore", "0"));
+    localStorage.setItem("characterList", "");
 }
